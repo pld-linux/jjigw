@@ -1,5 +1,4 @@
-# Customized setings for jjigw
+# Set nice level for jjigw
 
-# Define nice level for jjigw 
-SERVICE_RUN_NICE_LEVEL="+5"
-
+# Define services nice level
+SERVICE_RUN_NICE_LEVEL="+1"
