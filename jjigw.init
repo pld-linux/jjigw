@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 #/etc/rc.d/init.d/jjigw
 #
@@ -32,9 +32,14 @@ case "$1" in
   start)
 	if [ ! -f /var/lock/subsys/jjigw ]; then
 		msg_starting "Jabber IRC Gateway"
-		daemon jjigw
+		initlog -c jjigw 2>/dev/null 1>/dev/null &
 		RETVAL=$?
-		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/jjigw
+		if [ $RETVAL -eq 0 ]; then
+			ok
+			touch /var/lock/subsys/jjigw
+		else
+			fail
+		fi
 	else
 		msg_already_running "Jabber IRC Gateway"
 	fi

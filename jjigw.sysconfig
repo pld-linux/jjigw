@@ -1,4 +1,6 @@
 # Set nice level for jjigw
 
 # Define services nice level
-SERVICE_RUN_NICE_LEVEL="+1"
+export SERVICE_RUN_NICE_LEVEL="+1"
+export PYTHONPATH=$PYTHONPATH:/usr/share/jjigw
+
