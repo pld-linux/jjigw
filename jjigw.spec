@@ -20,21 +20,31 @@ Requires:	python-pyxmpp
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-JJIGW is a Jabber-to-IRC gateway compatible with the Multi User Chat protocol,
-it allows you to join IRC channels and communicate with IRC users via your
-Jabber client. 
+JJIGW is a Jabber-to-IRC gateway compatible with the Multi User Chat
+protocol, it allows you to join IRC channels and communicate with IRC
+users via your Jabber client. 
+
+%description -l pl
+JJIGW to bramka Jabber-IRC kompatybilna z protoko³em Multi User Chat.
+Pozwala przy³±czaæ siê do kana³ów IRC i komunikowaæ z u¿ytkownikami
+IRC-a poprzez klienta Jabbera.
 
 %prep
 %setup -q
 
 %build
-%{__make} prefix=/usr
+%{__make} \
+	prefix=%{_prefix}
 
 %install
 install -d $RPM_BUILD_ROOT{/etc/{jabber,rc.d/init.d,sysconfig},%{_bindir}}
-%{__make} install DESTDIR=$RPM_BUILD_ROOT prefix=%{_prefix}
-perl -pi -e 's#/usr/etc#/etc/jabber#g' $RPM_BUILD_ROOT/%{_bindir}/*
-install %{SOURCE1} $RPM_BUILD_ROOT/etc/jabber/
+
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT \
+	prefix=%{_prefix}
+
+perl -pi -e 's#/usr/etc#/etc/jabber#g' $RPM_BUILD_ROOT%{_bindir}/*
+install %{SOURCE1} $RPM_BUILD_ROOT/etc/jabber
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/rc.d/init.d/jjigw
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/jjigw
 
