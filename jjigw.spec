@@ -1,15 +1,15 @@
 Summary:	IRC Conference module for Jabber
 Summary(pl):	Modu³ konferencyjny IRC systemu Jabber
 Name:		jjigw
-Version:	0.1
-Release:	1
+Version:	0.2.1
+Release:	0.2
 License:	GPL
 Group:		Applications/Communications
 Source0:	http://www.jabberstudio.org/files/%{name}/%{name}-%{version}.tar.gz
-# Source0-md5:	e689cf175d973c970a206325dab77374
-Source1:	jjigw.xml
-Source2:	jjigw.init
-Source3:	jjigw.sysconfig
+# Source0-md5:	b8b25ebed5aedb28365a528211bdd75e
+Source1:	%{name}.xml
+Source2:	%{name}.init
+Source3:	%{name}.sysconfig
 URL:		http://www.jabberstudio.org/projects/jjigw/
 PreReq:		rc-scripts
 Requires(post,preun):	/sbin/chkconfig
@@ -22,7 +22,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 JJIGW is a Jabber-to-IRC gateway compatible with the Multi User Chat
 protocol, it allows you to join IRC channels and communicate with IRC
-users via your Jabber client. 
+users via your Jabber client.
 
 %description -l pl
 JJIGW to bramka Jabber-IRC kompatybilna z protoko³em Multi User Chat.
@@ -37,16 +37,18 @@ IRC-a poprzez klienta Jabbera.
 	prefix=%{_prefix}
 
 %install
-install -d $RPM_BUILD_ROOT{/etc/{jabber,rc.d/init.d,sysconfig},%{_bindir}}
+rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT{%{_sysconfdir}/{jabber,rc.d/init.d,sysconfig},%{_bindir}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	prefix=%{_prefix}
 
-perl -pi -e 's#/usr/etc#/etc/jabber#g' $RPM_BUILD_ROOT%{_bindir}/*
-install %{SOURCE1} $RPM_BUILD_ROOT/etc/jabber
+perl -pi -e 's#%{_prefix}%{_sysconfdir}#%{_sysconfdir}/jabber#g' $RPM_BUILD_ROOT%{_bindir}/*
+
+install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/jabber
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/rc.d/init.d/jjigw
-install %{SOURCE2} $RPM_BUILD_ROOT/etc/sysconfig/jjigw
+install %{SOURCE3} $RPM_BUILD_ROOT/etc/sysconfig/jjigw
 
 %clean
 rm -rf $RPM_BUILD_ROOT
