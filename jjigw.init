@@ -51,7 +51,7 @@ case "$1" in
 		rm -f /var/lock/subsys/jjigw >/dev/null 2>&1
 	else
 		msg_not_running "Jabber IRC Gateway"
-	fi	
+	fi
 	;;
   restart)
 	$0 stop
