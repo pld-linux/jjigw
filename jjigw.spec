@@ -5,18 +5,18 @@ Version:	0.2.1
 Release:	0.2
 License:	GPL
 Group:		Applications/Communications
-Source0:	http://www.jabberstudio.org/files/%{name}/%{name}-%{version}.tar.gz
+Source0:	http://www.jabberstudio.org/files/jjigw/%{name}-%{version}.tar.gz
 # Source0-md5:	b8b25ebed5aedb28365a528211bdd75e
 Source1:	%{name}.xml
 Source2:	%{name}.init
 Source3:	%{name}.sysconfig
 URL:		http://www.jabberstudio.org/projects/jjigw/
-PreReq:		rc-scripts
-Requires(post,preun):	/sbin/chkconfig
 Requires(post):	perl-base
 Requires(post):	textutils
+Requires(post,preun):	/sbin/chkconfig
 Requires:	python-libxml2
 Requires:	python-pyxmpp
+Requires:	rc-scripts
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -82,6 +82,6 @@ fi
 %doc README TODO *.xml
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/*
-%attr(640,root,jabber) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/jabber/*
+%attr(640,root,jabber) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/jabber/*
 %attr(754,root,root) /etc/rc.d/init.d/jjigw
-%config(noreplace) %verify(not size mtime md5) /etc/sysconfig/jjigw
+%config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/jjigw
