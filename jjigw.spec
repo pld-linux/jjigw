@@ -11,7 +11,7 @@ Source1:	%{name}.xml
 Source2:	%{name}.init
 Source3:	%{name}.sysconfig
 URL:		http://www.jabberstudio.org/projects/jjigw/
-Requires(post):	perl-base
+Requires(post):	sed >= 4.0
 Requires(post):	textutils
 Requires(post,preun):	/sbin/chkconfig
 Requires:	python-libxml2
@@ -54,11 +54,11 @@ install %{SOURCE3} $RPM_BUILD_ROOT/etc/sysconfig/jjigw
 rm -rf $RPM_BUILD_ROOT
 
 %post
-if [ -f /etc/jabber/secret ] ; then
-	SECRET=`cat /etc/jabber/secret`
+if [ -f %{_sysconfdir}/jabber/secret ] ; then
+	SECRET=`cat %{_sysconfdir}/jabber/secret`
 	if [ -n "$SECRET" ] ; then
-        	echo "Updating component authentication secret in the config file..."
-		perl -pi -e "s/>secret</>$SECRET</" /etc/jabber/jjigw.xml
+		echo "Updating component authentication secret in the config file..."
+		%{__sed} -i -e "s/>secret</>$SECRET</" /etc/jabber/jjigw.xml
 	fi
 fi
 
