@@ -1,5 +1,5 @@
 Summary:	IRC Conference module for Jabber
-Summary(pl):	Modu³ konferencyjny IRC systemu Jabber
+Summary(pl.UTF-8):   ModuÅ‚ konferencyjny IRC systemu Jabber
 Name:		jjigw
 Version:	0.2.1
 Release:	0.2
@@ -24,9 +24,9 @@ JJIGW is a Jabber-to-IRC gateway compatible with the Multi User Chat
 protocol, it allows you to join IRC channels and communicate with IRC
 users via your Jabber client.
 
-%description -l pl
-JJIGW to bramka Jabber-IRC kompatybilna z protoko³em Multi User Chat.
-Pozwala przy³±czaæ siê do kana³ów IRC i komunikowaæ z u¿ytkownikami
+%description -l pl.UTF-8
+JJIGW to bramka Jabber-IRC kompatybilna z protokoÅ‚em Multi User Chat.
+Pozwala przyÅ‚Ä…czaÄ‡ siÄ™ do kanaÅ‚Ã³w IRC i komunikowaÄ‡ z uÅ¼ytkownikami
 IRC-a poprzez klienta Jabbera.
 
 %prep
