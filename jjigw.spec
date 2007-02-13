@@ -1,5 +1,5 @@
 Summary:	IRC Conference module for Jabber
-Summary(pl.UTF-8):   Moduł konferencyjny IRC systemu Jabber
+Summary(pl.UTF-8):	Moduł konferencyjny IRC systemu Jabber
 Name:		jjigw
 Version:	0.2.1
 Release:	0.2
